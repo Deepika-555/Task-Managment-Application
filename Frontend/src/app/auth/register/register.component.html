@@ -1,0 +1,130 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 p-6">
+  <div class="w-full max-w-lg bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl shadow-2xl p-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+        Create Account
+      </h2>
+      <p class="text-slate-400 mt-2 text-sm">Join the team and start managing tasks efficiently</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()" class="space-y-5">
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="p-3 bg-red-950/40 border border-red-800/60 text-red-300 text-sm rounded-lg">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Enter username"
+          class="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="registerForm.get('username')?.touched && registerForm.get('username')?.invalid"
+        />
+        <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid" class="text-red-400 text-xs mt-1">
+          <span *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</span>
+          <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Must be at least 3 characters.</span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="email">Email Address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="name@company.com"
+          class="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+        />
+        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-red-400 text-xs mt-1">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+        />
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-red-400 text-xs mt-1">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Must be at least 6 characters.</span>
+        </div>
+      </div>
+
+      <!-- Role Select -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="role">Role</label>
+        <select
+          id="role"
+          formControlName="role"
+          class="w-full bg-slate-950 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+        >
+          <option value="Employee">Employee</option>
+          <option value="TeamLead">Team Lead</option>
+          <option value="Manager">Manager</option>
+        </select>
+      </div>
+
+      <!-- Manager Select (shown for Employee and TeamLead) -->
+      <div *ngIf="registerForm.get('role')?.value === 'Employee' || registerForm.get('role')?.value === 'TeamLead'">
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="manager">Assign Manager</label>
+        <select
+          id="manager"
+          formControlName="manager"
+          class="w-full bg-slate-950 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="registerForm.get('manager')?.touched && registerForm.get('manager')?.invalid"
+        >
+          <option value="">Select Manager</option>
+          <option *ngFor="let mgr of managers" [value]="mgr._id">{{ mgr.username }}</option>
+        </select>
+        <div *ngIf="registerForm.get('manager')?.touched && registerForm.get('manager')?.invalid" class="text-red-400 text-xs mt-1">
+          Manager assignment is required.
+        </div>
+      </div>
+
+      <!-- Team Lead Select (shown for Employee only) -->
+      <div *ngIf="registerForm.get('role')?.value === 'Employee'">
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="teamLead">Assign Team Lead</label>
+        <select
+          id="teamLead"
+          formControlName="teamLead"
+          class="w-full bg-slate-950 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="registerForm.get('teamLead')?.touched && registerForm.get('teamLead')?.invalid"
+        >
+          <option value="">Select Team Lead</option>
+          <option *ngFor="let tl of teamLeads" [value]="tl._id">{{ tl.username }}</option>
+        </select>
+        <div *ngIf="registerForm.get('teamLead')?.touched && registerForm.get('teamLead')?.invalid" class="text-red-400 text-xs mt-1">
+          Team Lead assignment is required.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full py-3 mt-4 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold rounded-lg text-sm shadow-lg hover:shadow-indigo-500/30 transition duration-200 transform hover:scale-[1.01]"
+      >
+        Sign Up
+      </button>
+
+      <!-- Toggle Login -->
+      <p class="text-slate-400 text-center text-xs mt-4">
+        Already have an account?
+        <a routerLink="/login" class="text-indigo-400 hover:text-indigo-300 font-semibold transition duration-200 ml-1">Log in</a>
+      </p>
+    </form>
+  </div>
+</div>

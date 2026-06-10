@@ -1,0 +1,64 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 p-6">
+  <div class="w-full max-w-md bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl shadow-2xl p-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+        Welcome Back
+      </h2>
+      <p class="text-slate-400 mt-2 text-sm">Sign in to manage and coordinate your tasks</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="space-y-6">
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="p-3 bg-red-950/40 border border-red-800/60 text-red-300 text-sm rounded-lg">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="email">Email Address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="name@company.com"
+          class="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
+        />
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-red-400 text-xs mt-1">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email.</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-slate-300 text-sm font-semibold mb-1.5" for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 text-slate-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+          [class.border-red-500]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+        />
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-red-400 text-xs mt-1">
+          Password is required.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full py-3 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold rounded-lg text-sm shadow-lg hover:shadow-indigo-500/30 transition duration-200 transform hover:scale-[1.01]"
+      >
+        Sign In
+      </button>
+
+      <!-- Toggle Register -->
+      <p class="text-slate-400 text-center text-xs mt-4">
+        Don't have an account yet?
+        <a routerLink="/register" class="text-indigo-400 hover:text-indigo-300 font-semibold transition duration-200 ml-1">Create one</a>
+      </p>
+    </form>
+  </div>
+</div>
