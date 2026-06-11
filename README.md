@@ -615,13 +615,12 @@ Benefits:
 * Improved Performance
 
 ---
-
 # Installation
 
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/Task-Managment-Application.git
+git clone https://github.com/Deepika-555/Task-Managment-Application.git
 ```
 
 ---
@@ -672,6 +671,77 @@ http://localhost:4200
 
 ---
 
+## Application Screenshots
+### Register
+
+<img width="1918" height="966" alt="Screenshot 2026-06-11 131321" src="https://github.com/user-attachments/assets/fbfa5a6d-850f-4c57-a53e-adf48b40e04a" />
+
+<img width="1918" height="972" alt="Screenshot 2026-06-11 131230" src="https://github.com/user-attachments/assets/16b01e16-949a-496b-b6bb-a28875e92781" />
+<img width="1918" height="970" alt="Screenshot 2026-06-11 131215" src="https://github.com/user-attachments/assets/f4ed09e7-ab72-41d5-86a7-c3eaa3384e40" />
+
+### Login
+
+<img width="1918" height="963" alt="Screenshot 2026-06-11 131400" src="https://github.com/user-attachments/assets/c0b67e35-a076-4936-bdbf-04263a6c2d13" />
+
+### Manager Dashboard
+<img width="1918" height="971" alt="Screenshot 2026-06-11 131453" src="https://github.com/user-attachments/assets/8465a469-93c0-4983-86a9-1eb99722ea0d" />
+
+### Team Lead Dashboard
+
+<img width="1903" height="972" alt="Screenshot 2026-06-11 131613" src="https://github.com/user-attachments/assets/09f9e223-a1d2-4d7f-b8f4-eaaff728e6b9" />
+
+### Employee Dashboard
+
+<img width="1917" height="965" alt="Screenshot 2026-06-11 131737" src="https://github.com/user-attachments/assets/36690835-d16a-4dec-ab01-10f3f3b257cd" />
+
+### Task Creation 
+<img width="1918" height="970" alt="Screenshot 2026-06-11 131520" src="https://github.com/user-attachments/assets/34f568cc-5c8d-4ed5-9484-75c4048a4d23" />
+
+
+## Demo Credentials
+
+### Manager
+
+Email: manager123@gmail.com
+Password: manager123
+
+### Team Lead
+
+Email: teamleader123@gmail.com
+Password: teamlead123@
+
+### Employee
+
+Email: deepikatest@gmail.com
+Password: Deepika123
+
+
+# Assignment Requirements Coverage
+
+| Requirement | Status |
+|------------|---------|
+| User Registration | ✅ |
+| User Login | ✅ |
+| JWT Authentication | ✅ |
+| Protected Routes | ✅ |
+| Role-Based Authorization | ✅ |
+| Manager Dashboard | ✅ |
+| Team Lead Dashboard | ✅ |
+| Employee Dashboard | ✅ |
+| Create Task | ✅ |
+| View Tasks | ✅ |
+| Update Task | ✅ |
+| Delete Task | ✅ |
+| Task Assignment | ✅ |
+| Task Reassignment | ✅ |
+| Task Status Filter | ✅ |
+| Angular Frontend | ✅ |
+| Form Validation | ✅ |
+| Error Handling | ✅ |
+| Responsive Design | ✅ |
+| Socket.IO Updates | ✅ / Optional |
+| Deployment | Optional |
+
 # Future Enhancements
 
 * Task Priority Levels
@@ -684,7 +754,6 @@ http://localhost:4200
 * Analytics Dashboard
 * Performance Reports
 * File Uploads
-* Dark Mode
 * Advanced Search
 * Task Comments
 
@@ -701,6 +770,3 @@ https://github.com/Deepika-555
 
 ---
 
-# License
-
-This project is licensed under the MIT License.
